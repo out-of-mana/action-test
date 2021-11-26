@@ -16,11 +16,11 @@ jobs:
       packages: write
       contents: read
 
-  steps:
-    - name: Checkout 
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2
 
-    - name: Show environment
-      id: show_env
-      run: | 
-        set
+      - name: Show environment
+        id: show_env
+        run: | 
+          set
