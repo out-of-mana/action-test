@@ -1,0 +1,26 @@
+name: test
+
+on:
+  release:
+    types: [ created ]
+
+
+env: 
+  ENVIRONMENT: prd
+  AWS_REGION: us-east-1
+
+jobs: 
+  test-build:
+    runs-on: ubuntu-latest
+    permissions: 
+      packages: write
+      contents: read
+
+  steps:
+    - name: Checkout 
+      uses: actions/checkout@v2
+
+    - name: Show environment
+      id: show_env
+      run: | 
+        set
