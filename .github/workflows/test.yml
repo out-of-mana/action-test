@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - BLAH
 
 env: 
   ENVIRONMENT: prd
@@ -19,10 +17,24 @@ jobs:
       contents: read
 
     steps:
+
       - name: Checkout 
         uses: actions/checkout@v2
 
-      - name: Show environment
-        id: show_env
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.files.outputs.all }}; do
+            echo "Do something with this ${changed_file}."
+          done
+
+      - name: Do BLAH build
+        id: base_build
+        if: ${{ contains(steps.files.outputs.all, 'docker/base/Dockerfile') }} 
         run: | 
-          set
+          echo "docker/base/Dockerfile build!"
+
+      - name: Do other build
+        id: other_build
+        run: | 
+          echo "Always run this"
