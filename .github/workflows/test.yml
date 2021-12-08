@@ -1,9 +1,11 @@
 name: test
 
 on:
-  release:
-    types: [ created ]
-
+  push:
+    branches:
+      - main
+    path:
+      - BLAH
 
 env: 
   ENVIRONMENT: prd
